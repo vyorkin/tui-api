@@ -185,4 +185,91 @@ defmodule Tui.TourTest do
       assert %Ecto.Changeset{} = Tour.change_offer(offer)
     end
   end
+
+  describe "tour_packages" do
+    alias Tui.Tour.Package
+
+    @valid_attrs %{accomodation_id: 42, adult_count: 42, children_count: 42, currency: 42, date_out: ~D[2010-04-17], duration: 42, hotel_id: 42, meal_id: 42, packet_type: 42, people_count: 42, price: "120.5", price_type: 42, room_type_id: 42, searchable: true, spo_id: 42}
+    @update_attrs %{accomodation_id: 43, adult_count: 43, children_count: 43, currency: 43, date_out: ~D[2011-05-18], duration: 43, hotel_id: 43, meal_id: 43, packet_type: 43, people_count: 43, price: "456.7", price_type: 43, room_type_id: 43, searchable: false, spo_id: 43}
+    @invalid_attrs %{accomodation_id: nil, adult_count: nil, children_count: nil, currency: nil, date_out: nil, duration: nil, hotel_id: nil, meal_id: nil, packet_type: nil, people_count: nil, price: nil, price_type: nil, room_type_id: nil, searchable: nil, spo_id: nil}
+
+    def package_fixture(attrs \\ %{}) do
+      {:ok, package} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Tour.create_package()
+
+      package
+    end
+
+    test "list_tour_packages/0 returns all tour_packages" do
+      package = package_fixture()
+      assert Tour.list_tour_packages() == [package]
+    end
+
+    test "get_package!/1 returns the package with given id" do
+      package = package_fixture()
+      assert Tour.get_package!(package.id) == package
+    end
+
+    test "create_package/1 with valid data creates a package" do
+      assert {:ok, %Package{} = package} = Tour.create_package(@valid_attrs)
+      assert package.accomodation_id == 42
+      assert package.adult_count == 42
+      assert package.children_count == 42
+      assert package.currency == 42
+      assert package.date_out == ~D[2010-04-17]
+      assert package.duration == 42
+      assert package.hotel_id == 42
+      assert package.meal_id == 42
+      assert package.packet_type == 42
+      assert package.people_count == 42
+      assert package.price == Decimal.new("120.5")
+      assert package.price_type == 42
+      assert package.room_type_id == 42
+      assert package.searchable == true
+      assert package.spo_id == 42
+    end
+
+    test "create_package/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Tour.create_package(@invalid_attrs)
+    end
+
+    test "update_package/2 with valid data updates the package" do
+      package = package_fixture()
+      assert {:ok, %Package{} = package} = Tour.update_package(package, @update_attrs)
+      assert package.accomodation_id == 43
+      assert package.adult_count == 43
+      assert package.children_count == 43
+      assert package.currency == 43
+      assert package.date_out == ~D[2011-05-18]
+      assert package.duration == 43
+      assert package.hotel_id == 43
+      assert package.meal_id == 43
+      assert package.packet_type == 43
+      assert package.people_count == 43
+      assert package.price == Decimal.new("456.7")
+      assert package.price_type == 43
+      assert package.room_type_id == 43
+      assert package.searchable == false
+      assert package.spo_id == 43
+    end
+
+    test "update_package/2 with invalid data returns error changeset" do
+      package = package_fixture()
+      assert {:error, %Ecto.Changeset{}} = Tour.update_package(package, @invalid_attrs)
+      assert package == Tour.get_package!(package.id)
+    end
+
+    test "delete_package/1 deletes the package" do
+      package = package_fixture()
+      assert {:ok, %Package{}} = Tour.delete_package(package)
+      assert_raise Ecto.NoResultsError, fn -> Tour.get_package!(package.id) end
+    end
+
+    test "change_package/1 returns a package changeset" do
+      package = package_fixture()
+      assert %Ecto.Changeset{} = Tour.change_package(package)
+    end
+  end
 end

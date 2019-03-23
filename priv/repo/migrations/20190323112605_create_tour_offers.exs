@@ -8,6 +8,5 @@ defmodule Tui.Repo.Migrations.CreateTourOffers do
 
       timestamps()
     end
-
   end
 end
