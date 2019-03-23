@@ -2,6 +2,9 @@
 
 RESTful API for the TUI hackaton.
 
+Остроржно, говнокод.
+Осторожно, в коментариях присутствует ненормативная лексика.
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
