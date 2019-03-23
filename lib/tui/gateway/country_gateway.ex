@@ -10,11 +10,15 @@ defmodule Tui.Gateway.CountryGateway do
   end
 
   def process_request_options(_) do
-   [recv_timeout: 1000000]
+   [recv_timeout: 10000000]
   end
 
-  def process_request_url(_),
-    do: Url.build("state")
+  def process_request_url(_) do
+    Url.build(%{
+      samo_action: "reference",
+      type: "state"
+    })
+  end
 
   def process_response_body(body) do
     xpath(body, ~x"//state"l,

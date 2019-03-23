@@ -13,8 +13,12 @@ defmodule Tui.Gateway.RegionGateway do
    [recv_timeout: 1000000]
   end
 
-  def process_request_url(_),
-    do: Url.build("region")
+  def process_request_url(_) do
+    Url.build(%{
+      samo_action: "reference",
+      type: "region"
+    })
+  end
 
   def process_response_body(body) do
     xpath(body, ~x"//region"l,

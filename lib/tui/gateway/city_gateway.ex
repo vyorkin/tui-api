@@ -13,8 +13,12 @@ defmodule Tui.Gateway.CityGateway do
    [recv_timeout: 1000000]
   end
 
-  def process_request_url(_),
-    do: Url.build("town")
+  def process_request_url(_) do
+    Url.build(%{
+      samo_action: "reference",
+      type: "town"
+    })
+  end
 
   def process_response_body(body) do
     xpath(body, ~x"//town"l,
