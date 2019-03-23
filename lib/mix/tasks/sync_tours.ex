@@ -14,7 +14,7 @@ defmodule Mix.Tasks.SyncTours do
     countries = Repo.all(Country)
     countries |> Enum.map(fn country ->
       tour = TourGateway.fetch(country.id)
-      Tour.create_offer!(%{data: tour})
+      Tour.create_offer!(%{country_id: country.id, data: tour})
 
       IO.puts "TOUR:"
       IO.inspect tour

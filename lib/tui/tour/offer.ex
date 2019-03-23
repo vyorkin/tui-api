@@ -1,17 +1,19 @@
 defmodule Tui.Tour.Offer do
-  use Ecto.Schema
-  import Ecto.Changeset
+  use Tui.API, :model
+
+  alias Tui.Geo.Country
 
   schema "tour_offers" do
     field :data, :map
+    belongs_to :country, Country
 
     timestamps()
   end
 
-  @doc false
+  @fields ~w(data country_id)a
   def changeset(offer, attrs) do
     offer
-    |> cast(attrs, [:data])
-    |> validate_required([:data])
+    |> cast(attrs, @fields)
+    |> validate_required(@fields)
   end
 end

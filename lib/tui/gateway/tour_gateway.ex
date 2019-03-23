@@ -18,7 +18,7 @@ defmodule Tui.Gateway.TourGateway do
       action: "SearchTour_ALL",
       type: "json",
       STATEINC: country_id,
-      TOWNFROMINC: 6
+      TOWNFROMINC: 274286
     })
     IO.puts("GET: " <> url)
     url

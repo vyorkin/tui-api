@@ -12,7 +12,7 @@ defmodule Tui.Repo.Migrations.CreateTravelCountries do
       timestamps(updated_at: false)
     end
  
-    create unique_index(:travel_countries, [:country_id, :travel_category_id])
+    create unique_index(:travel_countries, [:country_id, :travel_category_id, :month])
     create index(:travel_countries, [:country_id])
     create index(:travel_countries, [:travel_category_id])
   end
