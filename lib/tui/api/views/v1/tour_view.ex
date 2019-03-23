@@ -10,9 +10,7 @@ defmodule Tui.API.V1.TourView do
     render_many(tours, __MODULE__, "show.json")
   end
 
-  def render("show.json", %{tour: tour}) do
-    tour
-    |> Map.take(@attrs)
-    |> Map.put(:deleted, !is_nil(tour.deleted_at))
+  def render("show.json", %{tour: %{data: data}}) do
+    data
   end
 end

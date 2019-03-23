@@ -2,7 +2,8 @@ use Mix.Config
 
 config :tui, :environment, :dev
 
-config :tui, :oauth_token, "43041fdef08948cab269de623fa58dfe"
+config :tui, :oauth_token_ref, "43041fdef08948cab269de623fa58dfe"
+config :tui, :oauth_token_api, "1ca29a397ca949438e9ba93287e9fa06"
 
 # For development, we disable any cache and enable
 # debugging and code reloading.

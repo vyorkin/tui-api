@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Sync do
+defmodule Mix.Tasks.SyncGeo do
   use Mix.Task
 
   alias Tui.Gateway.{CountryGateway, RegionGateway, CityGateway}

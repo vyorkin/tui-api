@@ -15,6 +15,7 @@ defmodule Tui.Gateway.CountryGateway do
 
   def process_request_url(_) do
     Url.build(%{
+      token: :oauth_token_ref,
       samo_action: "reference",
       type: "state"
     })
