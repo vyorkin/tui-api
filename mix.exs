@@ -44,6 +44,7 @@ defmodule Tui.MixProject do
 
       {:httpoison, "~> 1.4"},
       {:guardian, "~> 1.0"},
+      {:ecto_enum, "~> 1.2"},
 
       {:google_maps, "~> 0.11"},
 
