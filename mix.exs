@@ -42,12 +42,17 @@ defmodule Tui.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
 
-      # we're going to use ex_machina not only in test env
-      {:ex_machina, "~> 2.3"},
-      {:faker, "~> 0.12", only: :test},
+      {:httpoison, "~> 1.4"},
+      {:guardian, "~> 1.0"},
 
-      # API documentation generator (we use api blueprint)
-      {:blue_bird, "~> 0.4.0"}
+      {:google_maps, "~> 0.11"},
+
+      {:sweet_xml, "~> 0.6"},
+
+      {:argon2_elixir, "~> 2.0"},
+      {:comeonin, "~> 5.1"},
+
+      {:credo, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -62,17 +67,6 @@ defmodule Tui.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"]
-    ]
-  end
-
-  def blue_bird_info do
-    [
-      host: "https://localhost:4000",
-      title: "TUI Search API",
-      description: """
-      RESTful API for the TUI hackaton.
-      Use at your own risk.
-      """
     ]
   end
 end

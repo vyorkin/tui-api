@@ -1,12 +1,16 @@
 use Mix.Config
 
+config :tui, :environment, :dev
+
+config :tui, :oauth_token, "43041fdef08948cab269de623fa58dfe"
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :tui, TuiWeb.Endpoint,
+config :tui, Tui.API.Endpoint,
   http: [port: 4000],
   debug_errors: false,
   code_reloader: true,

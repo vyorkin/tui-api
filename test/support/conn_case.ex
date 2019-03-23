@@ -1,4 +1,4 @@
-defmodule TuiWeb.ConnCase do
+defmodule Tui.API.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -15,14 +15,29 @@ defmodule TuiWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
+  defmodule Helpers do
+    defmacro __using__(_) do
+      quote do
+        def sign_in(conn, user) do
+          {:ok, jwt, _} = Tui.API.Guardian.encode_and_sign(user)
+          conn |> Plug.Conn.put_req_header("authorization", "Bearer #{jwt}")
+        end
+      end
+    end
+  end
+
   using do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      alias TuiWeb.Router.Helpers, as: Routes
+
+      import Tui.TestFactory
+
+      alias Tui.API.Router.Helpers, as: Routes
+      alias Tui.Repo
 
       # The default endpoint for testing
-      @endpoint TuiWeb.Endpoint
+      @endpoint Tui.API.Endpoint
     end
   end
 

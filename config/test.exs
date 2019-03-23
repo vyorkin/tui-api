@@ -1,18 +1,26 @@
 use Mix.Config
 
+config :tui, :environment, :test
+
+config :tui, :oauth_token, "43041fdef08948cab269de623fa58dfe"
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :tui, TuiWeb.Endpoint,
+config :tui, Tui.API.Endpoint,
   http: [port: 4002],
   server: false
 
 # Print only warnings and errors during test
 config :logger, level: :warn
 
+# Be less secure (and faster) in the test env
+config :argon2_elixir,
+  t_cost: 2
+  m_cost: 12
+
 # Configure your database
 config :tui, Tui.Repo,
   username: "postgres",
-  password: "postgres",
   database: "tui_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
