@@ -32,7 +32,11 @@ defmodule Tui.API.Router do
 
       resources "/places", PlaceController, only: [:index]
       resources "/hotels", HotelController, only: [:index]
-      resources "/tours", TourController, only: [:index]
+
+      resources "/countries", CountryController do
+        resources "/tours", TourController, only: [:index]
+      end
+
       resources "/profile", ProfileController, only: [:show], singleton: true
     end
   end

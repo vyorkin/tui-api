@@ -57,8 +57,12 @@ defmodule Tui.Tour do
   end
 
 
-  def list_tour_offers do
-    Repo.all(Offer)
+  def list_tour_offers(country) do
+    query =
+      from o in Offer,
+      where: o.country_id == ^country.id
+
+    query |> Repo.all()
   end
 
   def get_offer!(id), do: Repo.get!(Offer, id)
