@@ -2,10 +2,7 @@ defmodule Tui.Geo.Geocoding do
   import Ecto.Query, warn: false
 
   alias Tui.Repo
-  alias Tui.Geo.{
-    Location,
-    Point
-  }
+  alias Tui.Geo.{Location, Point}
 
   def geocode(module, struct, name) do
     case GoogleMaps.geocode(name, language: "ru") do

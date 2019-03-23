@@ -105,5 +105,4 @@ defmodule Tui.Geo do
   def change_city(%City{} = city) do
     City.changeset(city, %{})
   end
-
 end

@@ -1,15 +1,21 @@
 defmodule Tui.Geo.Country do
   use Tui.API, :model
 
+  alias Tui.Geo.{City, Region, Location}
+  alias Tui.Travel.{TravelCategory, TravelCountry}
+
   schema "countries" do
     field :name, :string
     field :name_lat, :string
     field :deleted_at, :naive_datetime
 
-    belongs_to :location, Tui.Geo.Location
+    belongs_to :location, Location
 
-    has_many :regions, Tui.Geo.Region
-    has_many :cities, Tui.Geo.City
+    has_many :regions, Region
+    has_many :cities, City
+
+    many_to_many :travel_categories, TravelCategory,
+      join_through: TravelCountry
 
     timestamps()
   end

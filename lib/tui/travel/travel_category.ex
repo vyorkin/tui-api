@@ -1,10 +1,15 @@
 defmodule Tui.Travel.TravelCategory do
-  use Ecto.Schema
-  import Ecto.Changeset
+  use Tui.API, :model
+
+  alias Tui.Geo.Country
+  alias Tui.Travel.TravelCountry
 
   schema "travel_categories" do
     field :name, :string
     field :deleted_at, :naive_datetime
+
+    many_to_many :countries, Country,
+      join_through: TravelCountry
 
     timestamps()
   end

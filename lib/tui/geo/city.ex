@@ -1,14 +1,16 @@
 defmodule Tui.Geo.City do
   use Tui.API, :model
 
+  alias Tui.Geo.{Country, Region, Location}
+
   schema "cities" do
     field :name, :string
     field :name_lat, :string
     field :deleted_at, :naive_datetime
 
-    belongs_to :location, Tui.Geo.Location
-    belongs_to :country, Tui.Geo.Country
-    belongs_to :region, Tui.Geo.Region
+    belongs_to :location, Location
+    belongs_to :country, Country
+    belongs_to :region, Region
 
     timestamps()
   end
